@@ -11,6 +11,8 @@
     <body>
         {% if user.is_authenticated %}
         <h1>Rango says... hello {{ user.username }}!</h1>
+        <a href='rango/restricted/'>Restricted Page</a><br>
+        <a href='/rango/logout/'>Logout</a>
         {% else %}
         <h1>Rango says... hello world!</h1>
         <a href="/rango/register/">Register Here</a><br>

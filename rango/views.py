@@ -64,7 +64,6 @@ def add_category(request):
 
 
 def add_page(request, category_name_slug):
-
     try:
         cat = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
@@ -148,7 +147,6 @@ def register(request):
 
 
 def user_login(request):
-
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Gather the username and password provided by the user.
@@ -188,6 +186,16 @@ def user_login(request):
         # blank dictionary object...
         return render(request, 'rango/login.html', {})
 
+
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
+
+# Use the login_required() decorator to ensure only those logged in can access the view.
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return HttpResponseRedirect('/rango/')
