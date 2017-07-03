@@ -9,9 +9,13 @@
     </head>
 
     <body>
-        <h1>Rango says...hello world!</h1>
-
+        {% if user.is_authenticated %}
+        <h1>Rango says... hello {{ user.username }}!</h1>
+        {% else %}
+        <h1>Rango says... hello world!</h1>
         <a href="/rango/register/">Register Here</a><br>
+        <a href="/rango/login/">Login</a><br>
+        {% endif %}
         
         {% if categories %}
         <h3>Least Liked Categories</h3>
