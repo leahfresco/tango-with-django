@@ -100,3 +100,6 @@ STATICFILES_DIRS = (STATIC_PATH, )
 # Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Redirect users to this page if they are not logged in
+LOGIN_URL = '/rango/login/'

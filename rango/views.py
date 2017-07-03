@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
@@ -187,3 +188,6 @@ def user_login(request):
         # blank dictionary object...
         return render(request, 'rango/login.html', {})
 
+@login_required
+def restricted(request):
+    return HttpResponse("Since you're logged in, you can see this text!")
