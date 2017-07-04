@@ -4,12 +4,11 @@
 
 {% load staticfiles %}
 
-{% block title %}About{% endblock %}
+{% block title %}Restricted{% endblock %}
 
 {% block body_block %}
 
 <h1>Rango says...</h1>
-here is the {{ message }}<br />
-<img src="{% static "images/leahprof.jpg" %}" alt="Picture of Me" />
+<div>Since you're logged in, you can see this text!</div>
 
 {% endblock %}
