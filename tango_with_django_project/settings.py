@@ -103,3 +103,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Redirect users to this page if they are not logged in
 LOGIN_URL = '/rango/login/'
+
+#Session settings
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
