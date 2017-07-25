@@ -250,3 +250,30 @@ def track_url(request):
                 pass
 
     return redirect(url)
+
+def finish_register(request):
+    # If the request is a HTTP POST, try to pull out the relevant information.
+    if request.method == 'POST':
+        profile_form = UserProfileForm(data=request.POST)
+
+        # If the form is valid...
+        if profile_form.is_valid():
+
+            profile = profile_form.save()
+
+            # Did the user provide a profile picture?
+            # If so, we need to get it from the input form and put it in the UserProfile model.
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            # Now we save the UserProfile model instance.
+            profile.save()
+
+        return render(request, '/rango/')
+    
+    else:
+        profile_form = UserProfileForm()
+
+        return render(request,
+            'rango/profile_registration.html',
+            {'profile_form': profile_form} )
